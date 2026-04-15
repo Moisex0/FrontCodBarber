@@ -1,7 +1,13 @@
 import axios from 'axios';
 
+function apiBaseUrl() {
+    const raw = import.meta.env.VITE_API_URL || 'https://backend-codbarber-v2.onrender.com';
+    const origin = String(raw).trim().replace(/\/+$/, '');
+    return `${origin}/api`;
+}
+
 const api = axios.create({
-    baseURL: 'https://backend-codbarber.onrender.com', 
+    baseURL: apiBaseUrl(),
 });
 
 api.interceptors.request.use(
